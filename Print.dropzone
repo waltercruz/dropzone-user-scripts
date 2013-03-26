@@ -93,7 +93,7 @@ def make_pdf(path)
     b = a.gsub('<div class="PageStyle">',"").gsub('{background:#ACB2BB;}','')
     File.open("#{$printing_tmp_folder}/qlmanage-doc2pdf-tmp.html","w") {|f| f << b}
     output_filename = "#{$printing_tmp_folder}/#{file}.pdf"
-    `/System/Library/Printers/Libraries/convert -f #{$printing_tmp_folder}/qlmanage-doc2pdf-tmp.html -o \"#{output_filename}\" >& /dev/null`
+    `/usr/sbin/cupsfilter #{$printing_tmp_folder}/qlmanage-doc2pdf-tmp.html > \"#{output_filename}\" 2> /dev/null`
     return output_filename
   else
     $dz.error("PDF Creation Error", "The generated preview file #{$printing_tmp_folder}/#{file}.qlpreview/Preview.html could not be found.")
