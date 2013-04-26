@@ -2,9 +2,9 @@
 # encoding: utf-8
 
 # myPhoneDesktop for Dropzone extension
-# v1.1, 05/23/2012
+# v2.0, 03/03/2013
 # Author: jProductivity
-# Copyright © 2012 jProductivity, LLC
+# Copyright © 2013 jProductivity, LLC
 # http://www.myphonedesktop.com/
 
 # Dropzone Destination Info
@@ -55,23 +55,11 @@ def process_query(data, was_clicked)
 
   is_file = File.exist?(data) && ! File.directory?(data)
 
-  allowed_image_files = [".jpeg", ".jpg", ".png", ".gif"]
-  allowed_text_files = [".text", ".txt", ".js", ".log", ".css", ".vcf", ".htm", ".html", ".md", ".markdown", ".rb", ".sql", ".java", ".csv", ".htm", ".html"]
-
   if is_file
-    file_name = File.basename("#{data}")
-    file_kind = File.extname("#{data}")
-
-    if allowed_image_files.include?(file_kind) || allowed_text_files.include?(file_kind)
       t = Thread.new do
         `osascript -e 'set the clipboard to POSIX file "#{data}"'`
       end
       t.join
-    else
-      $dz.error("Unsupported File Type", "myPhoneDesktop unable to process file:\n\n#{file_name}\n\nSupported file types include text files (txt, vCard, markdown, etc.) and images (gif, jpeg and png)")
-      Process.exit
-    end
-
   else
     if ! was_clicked
       data = data.gsub(/["]/i, '\\"')
