@@ -25,16 +25,16 @@ def dragged
   if allowed_exts.include?(ext)
 
     if ENV['KEY_MODIFIERS'] == "Command"
-        %x(osascript -e 'tell application "System Events"\n  if second desktop exists then\n  set picture of second desktop to "#{file_path}"\n  end if\n  end tell')
+        %x(osascript -e 'tell application "System Events"\n  if second desktop exists then\n  set picture of second desktop to "#{file_path}"\n  end if\n  end tell' >& /dev/null)
         $dz.finish("2nd Desktop Changed!")
     elsif ENV['KEY_MODIFIERS'] == "Option"
-        %x(osascript -e 'tell application "System Events"\n  if third desktop exists then\n  set picture of third desktop to "#{file_path}"\n  end if\n  end tell')
+        %x(osascript -e 'tell application "System Events"\n  if third desktop exists then\n  set picture of third desktop to "#{file_path}"\n  end if\n  end tell' >& /dev/null)
         $dz.finish("3rd Desktop Changed!")
     elsif ENV['KEY_MODIFIERS'] == "Control"
-        %x(osascript -e 'tell application "System Events"\n  if fourth desktop exists then\n  set picture of fourth desktop to "#{file_path}"\n  end if\n  end tell')
+        %x(osascript -e 'tell application "System Events"\n  if fourth desktop exists then\n  set picture of fourth desktop to "#{file_path}"\n  end if\n  end tell' >& /dev/null)
         $dz.finish("4th Desktop Changed!")
     else
-        %x(osascript -e 'tell application "System Events" to set picture of current desktop to "#{file_path}"')
+        %x(osascript -e 'tell application "System Events" to set picture of current desktop to "#{file_path}"' >& /dev/null)
         $dz.finish("Changed!")
     end
 	
