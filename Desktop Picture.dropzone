@@ -2,16 +2,15 @@
 
 # Dropzone Destination Info
 # Name: Desktop Picture
-# Description: A dropped image will be set as the current desktop background.  For second, third, and fourth monitors, hold down Command, Option, and Control respectively.
+# Description: A dropped image will be set as the current desktop background.
 # Handles: NSFilenamesPboardType
 # Events: Dragged
 # KeyModifiers: Command, Option, Control
-# Creator: cockscomb.info extended by NovaStorm Software
-# URL: http://cockscomb.info
+# Creator: Aptonic Software
+# URL: http://aptonic.com
 # IconURL: http://aptonic.com/destinations/icons/desktop.png
 
 def dragged
-
   $dz.determinate(false)
   
   file_path = $items[0]
@@ -23,27 +22,11 @@ def dragged
   ext = File.extname(file_path).downcase[1..-1]
   
   if allowed_exts.include?(ext)
-
-    if ENV['KEY_MODIFIERS'] == "Command"
-        %x(osascript -e 'tell application "System Events"\n  if second desktop exists then\n  set picture of second desktop to "#{file_path}"\n  end if\n  end tell' >& /dev/null)
-        $dz.finish("2nd Desktop Changed!")
-    elsif ENV['KEY_MODIFIERS'] == "Option"
-        %x(osascript -e 'tell application "System Events"\n  if third desktop exists then\n  set picture of third desktop to "#{file_path}"\n  end if\n  end tell' >& /dev/null)
-        $dz.finish("3rd Desktop Changed!")
-    elsif ENV['KEY_MODIFIERS'] == "Control"
-        %x(osascript -e 'tell application "System Events"\n  if fourth desktop exists then\n  set picture of fourth desktop to "#{file_path}"\n  end if\n  end tell' >& /dev/null)
-        $dz.finish("4th Desktop Changed!")
-    else
-        %x(osascript -e 'tell application "System Events" to set picture of current desktop to "#{file_path}"' >& /dev/null)
-        $dz.finish("Changed!")
-    end
-	
+    %x(osascript -e 'tell application "System Events" to set picture of current desktop to "#{file_path}"' >& /dev/null)
+    $dz.finish("Desktop Changed")
   else
-  
-    $dz.finish("Error")
-	
+    $dz.finish("Not an Image")
   end
   
   $dz.url(false)
-  
 end
