@@ -4,12 +4,12 @@
 # Name: Sleep
 # Description: Puts your Mac to sleep.
 # Events: Clicked
-# Creator: Paul William
-# URL: http://entropytheblog.com
+# Creator: Aptonic Software
+# URL: http://aptonic.com
 # IconURL: http://aptonic.com/destinations/icons/sleep.png
 
 def clicked
   $dz.finish("Sleeping...")
   $dz.url(false)
-  `osascript -e 'tell application "System Events" to sleep'`
+  `osascript -e 'tell application "System Events" to sleep' >& /dev/null`
 end
