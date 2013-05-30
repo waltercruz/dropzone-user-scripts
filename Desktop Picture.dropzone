@@ -5,7 +5,6 @@
 # Description: A dropped image will be set as the current desktop background.
 # Handles: NSFilenamesPboardType
 # Events: Dragged
-# KeyModifiers: Command, Option, Control
 # Creator: Aptonic Software
 # URL: http://aptonic.com
 # IconURL: http://aptonic.com/destinations/icons/desktop.png
