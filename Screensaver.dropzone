@@ -9,8 +9,5 @@
 # IconURL: http://aptonic.com/destinations/icons/screensaver.png
  
 def clicked
-  result = `osascript -e 'tell application "System Events" to start current screen saver' 2>&1`
-  if result != ""
-    $dz.error("Error Starting Screensaver", result)
-  end
+  `osascript -e 'tell application "System Events" to start current screen saver' >& /dev/null`
 end
