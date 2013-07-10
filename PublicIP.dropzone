@@ -7,12 +7,12 @@
 # Creator: Marcell Jusztin
 # URL: http://www.marcelljusztin.com
 # IconURL: http://www.marcelljusztin.com/images/myip.png
+require 'open-uri'
 
 def clicked
   $dz.begin("Retrieving IP Address...")
-  ip_server = IO.popen("curl ifconfig.me/ip")
-  ip = ip_server.readlines
-  ip_server.close
+  ip_server = open('http://icanhazip.com/')
+  ip = ip_server.read
+  $dz.text(ip)
   $dz.finish("Public IP is on your clipboard")
-  $dz.url(ip)
 end
