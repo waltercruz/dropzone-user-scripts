@@ -13,6 +13,6 @@ def clicked
   $dz.begin("Retrieving IP Address...")
   ip_server = open('http://icanhazip.com/')
   ip = ip_server.read
-  $dz.text(ip)
   $dz.finish("Public IP is on your clipboard")
+  $dz.text(ip)
 end
