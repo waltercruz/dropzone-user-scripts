@@ -8,7 +8,7 @@
 # KeyModifiers: Command
 # Creator: Megan Cooke
 # URL: http://www.insanekitty.co.uk
-# IconURL: http://dl.dropbox.com/u/35021980/dropzone-create-dmg.png
+# IconURL: http://aptonic.com/destinations/icons/create-dmg.png
 
 # global vars
 $tmpDir = '/tmp/dztmp-' + Time.now.usec.to_s
